@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Recursive&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <div class="text-container">
+                <h1 class="title">Todo <span class="title-color-two">List</span></h1>
+                <p class="author">by Doug Carter</p>
+            </div>
+        </header>
+        <div class="lists">
+            <div class="project-frame">
+                <h2 class="projects-header headers">-Projects-</h2>
+                <div class="project-container">
+                    <div class="project">
+                        <p>House Stuff</p>
+                    </div>
+                    <div class="project project-selected">
+                        <p>Todo List App</p>
+                    </div>
+                </div>
+                
+                <div class="add-project-container">
+                    <button class="add add-project">
+                        Add New Project
+                    </button>
+                </div>
+            </div>
+            <div class="task-frame">
+                <h2 class="tasks-header headers">-Tasks-</h2>
+                <div class="task-container">
+                    <div class="task-wrapper">
+                        <div class="green-screen hidden"></div>
+                        <div class="task">
+                            <div class="edit">Edit</div>
+                            <div class="checkbox"></div>
+                            <div class="item-containers title-descr-container">
+                                <h3 class="top-task">Title</h3>
+                                <p class="bottom-task">Description</p>
+                            </div>
+                            <div class="item-containers due-container">
+                                <div class="date top-task">11/11/11</div>
+                                <p class="bottom-task due-p">Due</p>
+                            </div>
+                            <div class="item-containers priority-container">
+                                <div class="priority top-task"></div>
+                                <p class="bottom-task priority-p">Priority</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-wrapper">
+                        <div class="green-screen"></div>
+                        <div class="task">
+                            <div class="edit">Edit</div>
+                            <div class="checkbox"></div>
+                            <div class="item-containers title-descr-container">
+                                <h3 class="top-task">Title</h3>
+                                <p class="bottom-task">Description</p>
+                            </div>
+                            <div class="item-containers due-container">
+                                <div class="date top-task">11/11/11</div>
+                                <p class="bottom-task due-p">Due</p>
+                            </div>
+                            <div class="item-containers priority-container">
+                                <div class="priority top-task"></div>
+                                <p class="bottom-task priority-p">Priority</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <button class="add add-task">
+                    Add New Task to Project
+                </button>
+            </div>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
