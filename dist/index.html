@@ -6,6 +6,35 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div class="screen-cover">
+            <form class="project-form hidden">
+                <label class="project-label">
+                    Project Name:<input type="text" class="project-input">
+                </label>
+            </form>
+            <form class="task-form">
+                <label class="task-name-label">
+                    Task Name:<input type="text" class="task-input name-input">
+                </label>
+                <label class="task-description-label">
+                    Description:<textarea class="task-input description-input"></textarea>
+                </label>
+                <label class="task-due-label">
+                    Due date:<input type="date" class="due-input">
+                </label>
+                <label class="task-priority-label">
+                    Priority:<select name="priority" class="priority-input">
+                        <option value="lowest">Lowest (blue)</option>
+                        <option value="low">Low (green)</option>
+                        <option value="medium">Medium (yellow)</option>
+                        <option value="high">High (orange)</option>
+                        <option value="highest">Highest (red)</option>
+                    </select>
+                </label>
+                <button class="submit-button">Submit</button>
+            </form>
+        </div>
+        
         <header>
             <div class="text-container">
                 <h1 class="title">Todo <span class="title-color-two">List</span></h1>
@@ -17,9 +46,13 @@
                 <h2 class="projects-header headers">-Projects-</h2>
                 <div class="project-container">
                     <div class="project">
+                        <div class="edit-project">Edit</div>
+                        <div class="delete-project">x</div>
                         <p>House Stuff</p>
                     </div>
                     <div class="project project-selected">
+                        <div class="edit-project project-selected">Edit</div>
+                        <div class="delete-project project-selected">x</div>
                         <p>Todo List App</p>
                     </div>
                 </div>
@@ -36,8 +69,11 @@
                     <div class="task-wrapper">
                         <div class="green-screen hidden"></div>
                         <div class="task">
-                            <div class="edit">Edit</div>
-                            <div class="checkbox"></div>
+                            <div class="edit-task">Edit</div>
+                            <div class="delete-task">Delete</div>
+                            <div class="checkbox">
+                                <div class="x hidden">x</div>
+                            </div>
                             <div class="item-containers title-descr-container">
                                 <h3 class="top-task">Title</h3>
                                 <p class="bottom-task">Description</p>
@@ -55,8 +91,11 @@
                     <div class="task-wrapper">
                         <div class="green-screen"></div>
                         <div class="task">
-                            <div class="edit">Edit</div>
-                            <div class="checkbox"></div>
+                            <div class="edit-task">Edit</div>
+                            <div class="delete-task">Delete</div>
+                            <div class="checkbox">
+                                <div class="x">x</div>
+                            </div>
                             <div class="item-containers title-descr-container">
                                 <h3 class="top-task">Title</h3>
                                 <p class="bottom-task">Description</p>
