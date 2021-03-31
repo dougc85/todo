@@ -73,7 +73,7 @@ header {
 .text-container {
     display: flex;
     align-items: flex-end;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     margin-right: 80px;
 }
@@ -82,7 +82,7 @@ header {
     margin: 0;
     padding: 0;
     font-size: 80px;
-    margin-bottom: -5px;
+    margin-bottom: 10px;
     margin-left: 35px;
     color: #433520;
 }
@@ -94,7 +94,8 @@ header {
 .author {
     margin: 0;
     padding: 0;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
+    margin-left: 25px;
     color: #433520;
 }
 
@@ -218,8 +219,15 @@ header {
 }
 
 .project-selected {
-    background-color: #a38e75;
+    background-color: #bba891;
     box-shadow: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.edit-project,
+.delete-project {
+    border-bottom: 1px solid #4335204d;
 }
 
 /* 
