@@ -26,26 +26,44 @@ const projectFactory = (projectName) => {
     const edProj = editProjectSubmit.bind(this);
 
     return {name: projectName,
-            todos: [],
-            selected: false,
-            id: projectCounter,
-            
-            delete() {
-                let ind = projects.indexOf(this);
-                projects.splice(ind, 1);
-                domStuff.renderProjects(projects);
-            },
+        tasks: [],
+        selected: false,
+        id: projectCounter,
+        
+        delete() {
+            let ind = projects.indexOf(this);
+            projects.splice(ind, 1);
+            domStuff.renderProjects(projects);
+        },
 
-            edit() {
-                thisSolution = editProjectSubmit.bind(this);
+        edit() {
+            thisSolution = editProjectSubmit.bind(this);
 
-                projectInput.value = this.name;
-                screenCover.classList.toggle('hidden');
-                projectForm.classList.toggle('hidden');
-                document.addEventListener('keydown', thisSolution);
-                document.addEventListener('click', addProjectEscape);
-            }
+            projectInput.value = this.name;
+            screenCover.classList.toggle('hidden');
+            projectForm.classList.toggle('hidden');
+            document.addEventListener('keydown', thisSolution);
+            document.addEventListener('click', addProjectEscape);
         }
+    }
+}
+
+const taskFactory = (taskName, description, due, priority) => {
+    return {
+        name: taskName,
+        description: description,
+        due: due,
+        priority: priority,
+        active: true,
+
+        delete() {
+            return;
+        },
+
+        edit() {
+            return;
+        }
+    }
 }
 
 const sortProjects = (projects) => {
