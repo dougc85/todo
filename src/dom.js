@@ -15,14 +15,17 @@ const domStuff = {
 
             const projectDiv = document.createElement('div');
             projectDiv.classList.add('project');
+            projectDiv.dataset.id = project.id;
 
             const editProject = document.createElement('div');
             editProject.classList.add('edit-project');
             editProject.textContent = 'Edit';
+            editProject.addEventListener('click', project.edit.bind(project));
 
             const deleteProject = document.createElement('div');
             deleteProject.classList.add('delete-project');
             deleteProject.textContent = 'x';
+            deleteProject.addEventListener('click', project.delete.bind(project));
 
             const pProject = document.createElement('p');
             pProject.textContent = project.name;

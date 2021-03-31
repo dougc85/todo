@@ -157,6 +157,7 @@ header {
     border: 0;
     color: #433520;
     box-shadow: -6px 6px 10px rgba(0,0,0,.4);
+    cursor: pointer;
 }
 
 .add-project {
