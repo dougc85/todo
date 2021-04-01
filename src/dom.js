@@ -29,12 +29,17 @@ const domStuff = {
             deleteProject.addEventListener('click', project.delete.bind(project));
 
             const pProject = document.createElement('p');
+            pProject.classList.add('project-paragraph')
             pProject.textContent = project.name;
+            if (project.selected) {
+                pProject.addEventListener('click', project.close.bind(project));
+            }
+            else {pProject.addEventListener('click', project.open.bind(project, projectDiv, pProject))};
 
             if (project.selected) {
                 editProject.classList.add('project-selected');
                 deleteProject.classList.add('project-selected');
-                Projectdiv.classList.add('project-selected');
+                projectDiv.classList.add('project-selected');
             }
 
             projectDiv.appendChild(editProject);
@@ -49,7 +54,7 @@ const domStuff = {
         const taskContainer = document.querySelector('.task-container');
 
         while (taskContainer.firstChild) {
-            taskContainer.removeChild(task.firstChild);
+            taskContainer.removeChild(taskContainer.firstChild);
         }
 
         tasks.forEach(task => {
@@ -93,6 +98,37 @@ const domStuff = {
             titleContainer.appendChild(description);
 
             const dueContainer = document.createElement('div');
+            dueContainer.classList.add('item-containers', 'due-container');
+            const dueDate = document.createElement('div');
+            dueDate.classList.add('date', 'top-task');
+            dueDate.textContent = task.due;
+            dueContainer.appendChild(dueDate);
+            const dueLabel = document.createElement('p');
+            dueLabel.classList.add('bottom-task', 'due-p');
+            dueLabel.textContent  = 'Due';
+            dueContainer.appendChild(dueLabel);
+
+            const priorityContainer = document.createElement('div');
+            priorityContainer.classList.add('item-containers', 'priority-container');
+            const priority = document.createElement('div');
+            priority.classList.add('priority', 'top-task');
+            priorityContainer.appendChild(priority);
+            const priorityLabel = document.createElement('p');
+            priorityLabel.classList.add('bottom-task', 'priority-p');
+            priorityLabel.textContent = 'Priority';
+            priorityContainer.appendChild(priorityLabel);
+
+            taskElement.appendChild(editTask);
+            taskElement.appendChild(deleteTask);
+            taskElement.appendChild(checkbox);
+            taskElement.appendChild(titleContainer);
+            taskElement.appendChild(dueContainer);
+            taskElement.appendChild(priorityContainer);
+
+            taskWrapper.appendChild(greenScreen);
+            taskWrapper.appendChild(taskElement);
+
+            taskContainer.appendChild(taskWrapper);
         })
 
     }
