@@ -94,7 +94,8 @@ const domStuff = {
             checkbox.classList.add('checkbox');
             const x = document.createElement('div');
             x.classList.add('x');
-            x.textContent = 'x';
+            x.innerHTML = '<img src="check.png">';
+            console.log(x);
             if (task.active) {
                 x.classList.add('hidden');
             }
