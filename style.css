@@ -302,6 +302,7 @@ Tasks
 .checkbox {
     border: 2px solid black;
     height: 20px;
+    max-width: 20px;
     min-width: 20px;
     margin-left: 15px;
     margin-right: 15px;
@@ -309,10 +310,10 @@ Tasks
     cursor: pointer;
 }
 
-.x {
-    font-size: 42px;
+.x img{
+    height: 32px;
     margin-top: -12px;
-    margin-left: 0px;
+    margin-left: -2px;
     cursor: pointer;
 }
 
