@@ -14,16 +14,17 @@
             </div>
             <form class="task-form hidden">
                 <label class="task-name-label">
-                    Task Name:<input type="text" class="task-input name-input">
+                    Task Name*:<input type="text" class="task-input name-input">
                 </label>
                 <label class="task-description-label">
-                    Description:<textarea class="task-input description-input"></textarea>
+                    Description*:<textarea class="task-input description-input"></textarea>
                 </label>
                 <label class="task-due-label">
-                    Due date:<input type="date" class="due-input">
+                    Due date*:<input type="date" class="due-input">
                 </label>
                 <label class="task-priority-label">
-                    Priority:<select name="priority" class="priority-input">
+                    Priority*:<select name="priority" class="priority-input">
+                        <option value="select one">Select One</option>
                         <option value="lowest">Lowest (blue)</option>
                         <option value="low">Low (green)</option>
                         <option value="medium">Medium (yellow)</option>
@@ -31,6 +32,7 @@
                         <option value="highest">Highest (red)</option>
                     </select>
                 </label>
+                <p class="required">*required</p>
                 <button class="submit-button">Submit</button>
             </form>
         </div>
@@ -42,69 +44,70 @@
         </header>
         <div class="lists">
             <div class="project-frame">
-                <h3 class="projects-header headers">-Projects-</h3>
-                <div class="project-container"></div>
                 <div class="add-project-container">
                     <button class="add add-project">
                         Add New Project
                     </button>
                 </div>
+                <h3 class="projects-header headers">-Projects-</h3>
+                <div class="project-container"></div>
             </div>
             <div class="task-frame">
-                <h3 class="tasks-header headers">Todo List App - Tasks</h3>
-                <div class="task-container">
-                    <div class="task-wrapper">
-                        <div class="green-screen hidden"></div>
-                        <div class="task">
-                            <div class="edit-task">Edit</div>
-                            <div class="delete-task">Delete</div>
-                            <div class="checkbox">
-                                <div class="x hidden">x</div>
-                            </div>
-                            <div class="item-containers title-descr-container">
-                                <h4 class="top-task">Title</h4>
-                                <p class="bottom-task">Description</p>
-                            </div>
-                            <div class="item-containers due-container">
-                                <div class="date top-task">11/11/11</div>
-                                <p class="bottom-task due-p">Due</p>
-                            </div>
-                            <div class="item-containers priority-container">
-                                <div class="priority top-task"></div>
-                                <p class="bottom-task priority-p">Priority</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="task-wrapper">
-                        <div class="green-screen"></div>
-                        <div class="task">
-                            <div class="edit-task">Edit</div>
-                            <div class="delete-task">Delete</div>
-                            <div class="checkbox">
-                                <div class="x">x</div>
-                            </div>
-                            <div class="item-containers title-descr-container">
-                                <h4 class="top-task">Title</h4>
-                                <p class="bottom-task">Description</p>
-                            </div>
-                            <div class="item-containers due-container">
-                                <div class="date top-task">11/11/11</div>
-                                <p class="bottom-task due-p">Due</p>
-                            </div>
-                            <div class="item-containers priority-container">
-                                <div class="priority top-task"></div>
-                                <p class="bottom-task priority-p">Priority</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                </div>
+                <h3 class="tasks-header headers">Start by adding a project.<br>
+                                                 You must have a project selected in order to add tasks.</h3>
                 <button class="add add-task">
                     Add New Task to Project
                 </button>
+                <div class="task-container"></div>
             </div>
         </div>
         <script src="main.js"></script>
     </body>
 </html>
+
+<!--
+<div class="task-wrapper">
+    <div class="green-screen hidden"></div>
+    <div class="task">
+        <div class="edit-task">Edit</div>
+        <div class="delete-task">Delete</div>
+        <div class="checkbox">
+            <div class="x hidden">x</div>
+        </div>
+        <div class="item-containers title-descr-container">
+            <h4 class="top-task">Title</h4>
+            <p class="bottom-task">Description</p>
+        </div>
+        <div class="item-containers due-container">
+            <div class="date top-task">11/11/11</div>
+            <p class="bottom-task due-p">Due</p>
+        </div>
+        <div class="item-containers priority-container">
+            <div class="priority top-task"></div>
+            <p class="bottom-task priority-p">Priority</p>
+        </div>
+    </div>
+</div>
+<div class="task-wrapper">
+    <div class="green-screen"></div>
+    <div class="task">
+        <div class="edit-task">Edit</div>
+        <div class="delete-task">Delete</div>
+        <div class="checkbox">
+            <div class="x">x</div>
+        </div>
+        <div class="item-containers title-descr-container">
+            <h4 class="top-task">Title</h4>
+            <p class="bottom-task">Description</p>
+        </div>
+        <div class="item-containers due-container">
+            <div class="date top-task">11/11/11</div>
+            <p class="bottom-task due-p">Due</p>
+        </div>
+        <div class="item-containers priority-container">
+            <div class="priority top-task"></div>
+            <p class="bottom-task priority-p">Priority</p>
+        </div>
+    </div>
+</div>
+-->

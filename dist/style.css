@@ -102,9 +102,11 @@ header {
 .lists {
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: calc(100vh - 120px);
     display: flex;
     flex-grow: 2;
+    align-items: flex-start;
+    overflow-y: scroll;
 }
 
 .headers {
@@ -113,26 +115,31 @@ header {
     font-family: recursive;
     font-size: 20px;
     margin-top: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-weight: bold;
+    line-height: 30px;
 }
 
 .project-frame {
     width: 60px;
-    height: 100%;
+    height: calc(100vh - 120px);
     background-color: #025955;
     flex-basis: 280px;
     padding: 0;
     position: relative;
+    overflow-y: scroll;
+    overflow-x:hidden;
 }
 
 .task-frame {
     width: 60px;
-    height: 100%;
+    height: calc(100vh - 120px);
     background-color: #00917C;
     flex-grow: 2;
     position: relative;
     border-left: 1px solid black;
+    overflow-y: scroll;
+    overflow-x:hidden;
 }
 
 .color-scheme {
@@ -143,22 +150,25 @@ header {
 }
 
 .add-project-container {
-    width: 100%;
-    position: absolute;
+    z-index: 50;
+    position: fixed;
     bottom: 40px;
+    left: 50px;
 }
 
 .add {
+    z-index: 50;
     display: block;
     height: 40px;
-    background-color: #FDE8CD;
+    background-color: #68563b;
     font-family: Recursive;
     font-size: 20px;
     border-radius: 3px;
     border: 0;
-    color: #433520;
-    box-shadow: -6px 6px 10px rgba(0,0,0,.4);
+    color: #fdefdc;
+    box-shadow: 0px 8px 10px rgba(0,0,0,.6);
     cursor: pointer;
+    border: 2px solid black;
 }
 
 .add-project {
@@ -166,7 +176,7 @@ header {
 }
 
 .add-task {
-    position: absolute;
+    position: fixed;
     right: 50px;
     bottom: 40px;
 }
@@ -292,7 +302,7 @@ Tasks
 .checkbox {
     border: 2px solid black;
     height: 20px;
-    width: 20px;
+    min-width: 20px;
     margin-left: 15px;
     margin-right: 15px;
     border-radius: 2px;
@@ -344,8 +354,27 @@ Tasks
     box-sizing: border-box;
     height: 25px;
     width: 25px;
-    background-color: red;
     margin: 0 auto;
+}
+
+.priority-highest {
+    background-color: red;
+}
+
+.priority-high {
+    background-color: rgb(250, 159, 41);
+}
+
+.priority-medium {
+    background-color: yellow;
+}
+
+.priority-low {
+    background-color: green;
+}
+
+.priority-lowest {
+    background-color: blue;
 }
 
 .due-p,
@@ -472,7 +501,22 @@ Tasks
     margin-top: 5px;
 }
 
+.required {
+    position: absolute;
+    left: 25px;
+    bottom: 28px;
+    font-size: 15px;
+}
 
+.margin-fixer-projects {
+    font-size: 100px;
+    color: #025955;
+}
+
+.margin-fixer-tasks {
+    font-size: 100px;
+    color: #00917C;
+}
 
 .hidden {
     display: none;

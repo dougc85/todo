@@ -48,6 +48,11 @@ const domStuff = {
 
             projectContainer.appendChild(projectDiv);
         })
+        const marginFixer = document.createElement('div');
+        marginFixer.classList.add('margin-fixer-projects');
+        marginFixer.textContent="margin";
+
+        projectContainer.appendChild(marginFixer);
     },
 
     renderTasks(tasks) {
@@ -65,13 +70,16 @@ const domStuff = {
 
 
             const greenScreen = document.createElement('div');
-            greenScreen.classList.add('green-screen', 'hidden');
+            greenScreen.classList.add('green-screen');
+            if (task.active) {
+                greenScreen.classList.add('hidden');
+            }
 
             const taskElement = document.createElement('div');
             taskElement.classList.add('task');
 
 
-            
+
             const editTask = document.createElement('div');
             editTask.classList.add('edit-task');
             editTask.textContent = "Edit";
@@ -83,8 +91,13 @@ const domStuff = {
             const checkbox = document.createElement('div');
             checkbox.classList.add('checkbox');
             const x = document.createElement('div');
-            x.classList.add('x', 'hidden');
+            x.classList.add('x');
+            x.textContent = 'x';
+            if (task.active) {
+                x.classList.add('hidden');
+            }
             checkbox.appendChild(x);
+            checkbox.addEventListener('click', task.activeSwitch.bind(task, greenScreen, x));
 
             const titleContainer = document.createElement('div');
             titleContainer.classList.add('item-containers', 'title-descr-container');
@@ -111,11 +124,12 @@ const domStuff = {
             const priorityContainer = document.createElement('div');
             priorityContainer.classList.add('item-containers', 'priority-container');
             const priority = document.createElement('div');
-            priority.classList.add('priority', 'top-task');
+            priority.classList.add('priority', 'top-task', `priority-${task.priority}`);
+
             priorityContainer.appendChild(priority);
             const priorityLabel = document.createElement('p');
             priorityLabel.classList.add('bottom-task', 'priority-p');
-            priorityLabel.textContent = 'Priority';
+            priorityLabel.textContent = task.priority[0].toUpperCase() + task.priority.slice(1);
             priorityContainer.appendChild(priorityLabel);
 
             taskElement.appendChild(editTask);
@@ -131,6 +145,11 @@ const domStuff = {
             taskContainer.appendChild(taskWrapper);
         })
 
+        const marginFixer = document.createElement('div');
+        marginFixer.classList.add('margin-fixer-tasks');
+        marginFixer.textContent="margin";
+
+        taskContainer.appendChild(marginFixer);
     }
 };
 
