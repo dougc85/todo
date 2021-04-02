@@ -83,10 +83,12 @@ const domStuff = {
             const editTask = document.createElement('div');
             editTask.classList.add('edit-task');
             editTask.textContent = "Edit";
+            editTask.addEventListener('click', task.edit.bind(task));
 
             const deleteTask = document.createElement('div');
             deleteTask.classList.add('delete-task');
             deleteTask.textContent = "Delete";
+            deleteTask.addEventListener('click', task.delete.bind(task));
 
             const checkbox = document.createElement('div');
             checkbox.classList.add('checkbox');

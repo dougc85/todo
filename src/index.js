@@ -19,6 +19,7 @@ const addTaskButton = document.querySelector('.add-task');
 let projects = [];
 let projectCounter = 0;
 let thisSolution;
+let thisSolution2;
 let currentProject = '';
 
 //Factory functions - generate projects and tasks
@@ -111,17 +112,18 @@ const projectFactory = (projectName) => {
     }
 }
 
-const taskFactory = (projectId, taskName, description, due, priority, month, day, year) => {
+const taskFactory = (projectId, taskName, descriptionInput, due, priorityInput, month, day, year, inputDateFormat) => {
     return {
         project: projectId,
         name: taskName,
-        description: description,
+        description: descriptionInput,
         due: due,
         month: month,
         day: day,
         year: year,
-        priority: priority,
+        priority: priorityInput,
         active: true,
+        inputDateFormat,
 
         activeSwitch(greenScreen, x) {
             this.active = !this.active;
@@ -132,12 +134,25 @@ const taskFactory = (projectId, taskName, description, due, priority, month, day
         },
 
         delete() {
-            return;
+            let ind = currentProject.tasks.indexOf(this);
+            currentProject.tasks.splice(ind, 1);
+            domStuff.renderTasks(currentProject.tasks);
         },
 
         edit() {
-            return;
-        }
+            thisSolution = editTaskKeydown.bind(this);
+            thisSolution2 = editTaskClick.bind(this);
+
+            nameInput.value = this.name;
+            description.value = this.description;
+            dueDate.value = this.inputDateFormat;
+            priority.value = this.priority;
+
+            screenCover.classList.toggle('hidden');
+            taskForm.classList.toggle('hidden');
+            document.addEventListener('keydown', thisSolution);
+            document.addEventListener('click', thisSolution2);
+        },
     }
 }
 
@@ -258,8 +273,115 @@ const addProjectHandler = (e) => {
     document.addEventListener('click', (addProjectEscape));
 }
 
+function editTaskKeydown(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+
+        //Disable if form is not filled out
+        if (nameInput.value === '' || description.value === '' || dueDate.value === '' || priority.value === 'select one') {
+            return
+        }
+        //Remove listeners and remove popup
+        document.removeEventListener('keydown', thisSolution);
+        document.removeEventListener('click', thisSolution2);
+        
+        screenCover.classList.toggle('hidden');
+        taskForm.classList.toggle('hidden');
+
+        //create new task and display it
+
+        const dateYear = dueDate.value.slice(2, 4);
+        const dateMonth = (dueDate.value[5] === '0') ? dueDate.value.slice(6, 7): dueDate.value.slice(5, 7);
+        const dateDay = (dueDate.value[8] === '0') ? dueDate.value.slice(9): dueDate.value.slice(8);
+
+        //Not working Part
+        let ind = currentProject.tasks.indexOf(this);
+        let currentTask = currentProject.tasks[ind];
+
+        currentTask.name = nameInput.value;
+        currentTask.description = description.value;
+        currentTask.due = (dateMonth + '/' + dateDay +  '/' + dateYear);
+        currentTask.day = dateDay;
+        currentTask.month = dateMonth;
+        currentTask.year = dateYear;
+        currentTask.inputDateFormat = dueDate.value;
+        currentTask.priority = priority.value;
+
+        sortTasks(currentProject.tasks);
+        nameInput.value = '';
+        description.value = '';
+        dueDate.value = '';
+        priority.value = 'select one';
+
+        domStuff.renderTasks(currentProject.tasks);
+
+    } else if (e.key === 'Escape') {
+        document.removeEventListener('click', thisSolution2);
+        document.removeEventListener('keydown', thisSolution);
+        screenCover.classList.toggle('hidden');
+        taskForm.classList.toggle('hidden');
+        nameInput.value = '';
+        description.value = '';
+        dueDate.value = '';
+        priority.value = 'select one';
+    }
+}
+
+function editTaskClick(e) {
+    e.preventDefault();
+    if (e.target === document.querySelector('.submit-button')) {
+
+        //Disable if form is not filled out
+        if (nameInput.value === '' || description.value === '' || dueDate.value === '' || priority.value === 'select one') {
+            return
+        }
+        //Remove listeners and remove popup
+        document.removeEventListener('keydown', thisSolution);
+        document.removeEventListener('click', thisSolution2);
+        screenCover.classList.toggle('hidden');
+        taskForm.classList.toggle('hidden');
+
+        //update task
+
+        const dateYear = dueDate.value.slice(2, 4);
+        const dateMonth = (dueDate.value[5] === '0') ? dueDate.value.slice(6, 7): dueDate.value.slice(5, 7);
+        const dateDay = (dueDate.value[8] === '0') ? dueDate.value.slice(9): dueDate.value.slice(8);
+
+        let ind = currentProject.tasks.indexOf(this);
+        let currentTask = currentProject.tasks[ind];
+
+        currentTask.name = nameInput.value;
+        currentTask.description = description.value;
+        currentTask.due = (dateMonth + '/' + dateDay +  '/' + dateYear);
+        currentTask.day = dateDay;
+        currentTask.month = dateMonth;
+        currentTask.year = dateYear;
+        currentTask.inputDateFormat = dueDate.value;
+        currentTask.priority = priority.value;
+
+        sortTasks(currentProject.tasks);
+        nameInput.value = '';
+        description.value = '';
+        dueDate.value = '';
+        priority.value = 'select one';
+
+        domStuff.renderTasks(currentProject.tasks);
+
+    } else if (e.target === screenCover) {
+        document.removeEventListener('click', thisSolution2);
+        document.removeEventListener('keydown', thisSolution);
+        screenCover.classList.toggle('hidden');
+        taskForm.classList.toggle('hidden');
+        nameInput.value = '';
+        description.value = '';
+        dueDate.value = '';
+        priority.value = 'select one';
+    }
+}
+
 const addTaskKeydown = (e) => {
     if (e.key === 'Enter') {
+        e.preventDefault();
 
         //Disable if form is not filled out
         if (nameInput.value === '' || description.value === '' || dueDate.value === '' || priority.value === 'select one') {
@@ -277,7 +399,7 @@ const addTaskKeydown = (e) => {
         const dateMonth = (dueDate.value[5] === '0') ? dueDate.value.slice(6, 7): dueDate.value.slice(5, 7);
         const dateDay = (dueDate.value[8] === '0') ? dueDate.value.slice(9): dueDate.value.slice(8);
 
-        const newTask = taskFactory(currentProject.id, nameInput.value, description.value, (dateMonth + '/' + dateDay +  '/' + dateYear), priority.value, dateMonth, dateDay, dateYear);
+        const newTask = taskFactory(currentProject.id, nameInput.value, description.value, (dateMonth + '/' + dateDay +  '/' + dateYear), priority.value, dateMonth, dateDay, dateYear, dueDate.value);
         currentProject.tasks.push(newTask);
 
         sortTasks(currentProject.tasks);
@@ -321,7 +443,7 @@ const addTaskClick = (e) => {
         const dateMonth = (dueDate.value[5] === '0') ? dueDate.value.slice(6, 7): dueDate.value.slice(5, 7);
         const dateDay = (dueDate.value[8] === '0') ? dueDate.value.slice(9): dueDate.value.slice(8);
 
-        const newTask = taskFactory(currentProject.id, nameInput.value, description.value, (dateMonth + '/' + dateDay +  '/' + dateYear), priority.value, dateMonth, dateDay, dateYear);
+        const newTask = taskFactory(currentProject.id, nameInput.value, description.value, (dateMonth + '/' + dateDay +  '/' + dateYear), priority.value, dateMonth, dateDay, dateYear, dueDate.value);
         currentProject.tasks.push(newTask);
 
         sortTasks(currentProject.tasks);
