@@ -64,7 +64,7 @@ header {
     padding: 0;
     height: 120px;
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     font-family: Recursive;
     z-index: 1;
     box-shadow: 1px 1px 10px;
@@ -76,6 +76,7 @@ header {
     justify-content: flex-start;
     width: 100%;
     margin-right: 80px;
+    border: 1px solid red;
 }
 
 .title {
