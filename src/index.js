@@ -231,10 +231,12 @@ function editProjectSubmit(e) {
 const addProjectSubmit = (e) => {
     if (e.key === 'Enter') {
 
+        console.log(projectInput.value);
+        
         if (projectInput.value === '') {
             return;
         }
-        
+
         //Remove listeners and remove popup
         document.removeEventListener('click', addProjectEscape);
         document.removeEventListener('keydown', addProjectSubmit);
