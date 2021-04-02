@@ -150,14 +150,14 @@ header {
 }
 
 .add-project-container {
-    z-index: 50;
+    z-index: 10;
     position: fixed;
     bottom: 40px;
     left: 50px;
 }
 
 .add {
-    z-index: 50;
+    z-index: 10;
     display: block;
     height: 40px;
     background-color: #68563b;
@@ -511,11 +511,13 @@ Tasks
 .margin-fixer-projects {
     font-size: 100px;
     color: #025955;
+    user-select: none;
 }
 
 .margin-fixer-tasks {
     font-size: 100px;
     color: #00917C;
+    user-select: none;
 }
 
 .hidden {
