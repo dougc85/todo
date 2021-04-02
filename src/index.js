@@ -114,16 +114,17 @@ const projectFactory = (projectName) => {
 
 const taskFactory = (projectId, taskName, descriptionInput, due, priorityInput, month, day, year, inputDateFormat) => {
     return {
+        due,
+        month,
+        day,
+        year,
+        inputDateFormat,
         project: projectId,
         name: taskName,
         description: descriptionInput,
-        due: due,
-        month: month,
-        day: day,
-        year: year,
         priority: priorityInput,
         active: true,
-        inputDateFormat,
+        
 
         activeSwitch(greenScreen, x) {
             this.active = !this.active;
@@ -229,9 +230,15 @@ function editProjectSubmit(e) {
 
 const addProjectSubmit = (e) => {
     if (e.key === 'Enter') {
+
+        if (projectInput.value === '') {
+            return;
+        }
+        
         //Remove listeners and remove popup
         document.removeEventListener('click', addProjectEscape);
         document.removeEventListener('keydown', addProjectSubmit);
+
         screenCover.classList.toggle('hidden');
         projectForm.classList.toggle('hidden');
 
