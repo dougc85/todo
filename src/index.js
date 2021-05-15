@@ -46,6 +46,7 @@ const projectFactory = (projectName) => {
         }
         domStuff.renderTasks([]);
       }
+      window.localStorage.setItem('todolist', JSON.stringify(projects));
     },
 
     edit() {
@@ -58,6 +59,7 @@ const projectFactory = (projectName) => {
       document.addEventListener('keydown', thisSolution);
       // eslint-disable-next-line no-use-before-define
       document.addEventListener('click', addProjectEscape);
+      window.localStorage.setItem('todolist', JSON.stringify(projects));
     },
 
     open(projectDiv, pProject) {
@@ -147,6 +149,7 @@ const taskFactory = (
       const ind = currentProject.tasks.indexOf(this);
       currentProject.tasks.splice(ind, 1);
       domStuff.renderTasks(currentProject.tasks);
+      window.localStorage.setItem('todolist', JSON.stringify(projects));
     },
 
     edit() {
@@ -164,6 +167,7 @@ const taskFactory = (
       taskForm.classList.toggle('hidden');
       document.addEventListener('keydown', thisSolution);
       document.addEventListener('click', thisSolution2);
+      window.localStorage.setItem('todolist', JSON.stringify(projects));
     },
   });
 
@@ -174,6 +178,7 @@ const sortProjects = (projectsList) => {
     }
     return 1;
   });
+  window.localStorage.setItem('todolist', JSON.stringify(projects));
 };
 
 const priorityRanking = {
@@ -215,6 +220,7 @@ const sortTasks = (tasks) => {
     }
     return 1;
   });
+  window.localStorage.setItem('todolist', JSON.stringify(projects));
 };
 
 function editProjectSubmit(e) {
@@ -229,6 +235,7 @@ function editProjectSubmit(e) {
     sortProjects(projects);
     domStuff.renderProjects(projects);
     projectInput.value = '';
+    window.localStorage.setItem('todolist', JSON.stringify(projects));
   } else if (e.key === 'Escape') {
     // eslint-disable-next-line no-use-before-define
     document.removeEventListener('click', addProjectEscape);
@@ -266,6 +273,7 @@ const addProjectSubmit = (e) => {
     domStuff.renderProjects(projects);
     projectInput.value = '';
     domStuff.renderTasks(newProject.tasks);
+    window.localStorage.setItem('todolist', JSON.stringify(projects));
   } else if (e.key === 'Escape') {
     // eslint-disable-next-line no-use-before-define
     document.removeEventListener('click', addProjectEscape);
@@ -333,6 +341,7 @@ function editTaskKeydown(e) {
     priority.value = 'select one';
 
     domStuff.renderTasks(currentProject.tasks);
+    window.localStorage.setItem('todolist', JSON.stringify(projects));
   } else if (e.key === 'Escape') {
     document.removeEventListener('click', thisSolution2);
     document.removeEventListener('keydown', thisSolution);
@@ -383,6 +392,7 @@ function editTaskClick(e) {
     priority.value = 'select one';
 
     domStuff.renderTasks(currentProject.tasks);
+    window.localStorage.setItem('todolist', JSON.stringify(projects));
   } else if (e.target === screenCover) {
     document.removeEventListener('click', thisSolution2);
     document.removeEventListener('keydown', thisSolution);
@@ -426,6 +436,7 @@ const addTaskKeydown = (e) => {
     priority.value = 'select one';
 
     domStuff.renderTasks(currentProject.tasks);
+    window.localStorage.setItem('todolist', JSON.stringify(projects));
   } else if (e.key === 'Escape') {
     // eslint-disable-next-line no-use-before-define
     document.removeEventListener('click', addTaskClick);
@@ -469,6 +480,7 @@ const addTaskClick = (e) => {
     priority.value = 'select one';
 
     domStuff.renderTasks(currentProject.tasks);
+    window.localStorage.setItem('todolist', JSON.stringify(projects));
   } else if (e.target === screenCover) {
     document.removeEventListener('click', addTaskClick);
     document.removeEventListener('keydown', addTaskKeydown);
