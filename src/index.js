@@ -16,16 +16,7 @@ const addProjectButton = document.querySelector('.add-project');
 const addTaskButton = document.querySelector('.add-task');
 
 // Global State
-let projects;
-
-const localStore = window.localStorage.getItem('todolist');
-
-if (localStore) {
-  projects = JSON.parse(localStore);
-} else {
-  projects = [];
-}
-
+let projects = [];
 let projectCounter = 0;
 let thisSolution;
 let thisSolution2;
@@ -514,3 +505,40 @@ const addTaskHandler = () => {
 
 addProjectButton.addEventListener('click', addProjectHandler);
 addTaskButton.addEventListener('click', addTaskHandler);
+
+const localStore = window.localStorage.getItem('todolist');
+
+if (localStore) {
+  const simpleProjectsArray = JSON.parse(localStore);
+  projects = simpleProjectsArray.map((simpleProject) => {
+    const tasks = simpleProject.tasks.map((task) => {
+      const {
+        projectId,
+        taskName,
+        descriptionInput,
+        due,
+        priorityInput,
+        month,
+        day,
+        year,
+        inputDateFormat,
+      } = task;
+      return taskFactory(
+        projectId,
+        taskName,
+        descriptionInput,
+        due,
+        priorityInput,
+        month,
+        day,
+        year,
+        inputDateFormat,
+      );
+    });
+    const newProject = projectFactory(simpleProject.name);
+    newProject.tasks = tasks;
+    newProject.id = simpleProject.id;
+    return newProject;
+  });
+  domStuff.renderProjects(projects);
+}
