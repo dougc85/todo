@@ -16,7 +16,16 @@ const addProjectButton = document.querySelector('.add-project');
 const addTaskButton = document.querySelector('.add-task');
 
 // Global State
-const projects = [];
+let projects;
+
+const localStore = window.localStorage.getItem('todolist');
+
+if (localStore) {
+  projects = JSON.parse(localStore);
+} else {
+  projects = [];
+}
+
 let projectCounter = 0;
 let thisSolution;
 let thisSolution2;
